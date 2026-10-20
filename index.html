@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Quest: Unforgettable Journeys (Past Continuous Tense)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Poppins & Fredoka -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        display: ['Fredoka', 'cursive'],
+                    },
+                    colors: {
+                        brand: {
+                            purple: '#6C5CE7',
+                            pink: '#FD79A8',
+                            yellow: '#FDCB6E',
+                            blue: '#74B9FF',
+                            green: '#00B894',
+                            dark: '#2D3436'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%);
+            min-height: 100vh;
+        }
+        .font-display { font-family: 'Fredoka', cursive; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            border: 4px solid #ffffff;
+            box-shadow: 0 20px 30px -5px rgba(0, 0, 0, 0.25);
+        }
+        .custom-radio:checked + label {
+            border-color: #6C5CE7;
+            background-color: #F0EDFF;
+            box-shadow: 0 4px 12px rgba(108, 92, 231, 0.25);
+        }
+        .question-badge {
+            transition: all 0.2s ease-in-out;
+        }
+        .question-badge.active {
+            background-color: #6C5CE7;
+            color: white;
+            border-color: #6C5CE7;
+            transform: scale(1.1);
+        }
+        .question-badge.answered {
+            background-color: #00B894;
+            color: white;
+            border-color: #00B894;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #6C5CE7; border-radius: 10px; }
+    </style>
+</head>
+<body class="p-2 sm:p-4 md:p-6 flex items-center justify-center min-h-screen text-slate-800">
+
+    <!-- ========================================================================= -->
+    <!-- PETUNJUK PENTING INTEGRASI GOOGLE APPS SCRIPT (GAS):                     -->
+    <!-- 1. Tempelkan Kode Apps Script (ada di deskripsi bawah) ke Ekstensi GAS.  -->
+    <!-- 2. Deploy sebagai Web App (Access: Anyone / Siapa Saja).                -->
+    <!-- 3. Tempelkan Web App URL di variabel GAS_URL di bawah ini:              -->
+    <!-- ========================================================================= -->
+
+    <script>
+        // SISIPKAN URL GOOGLE APPS SCRIPT WEB APP DI SINI:
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbzxmhh2y-pAiPKeuJatCz6PDKM0dt8pHbG_PSLcC7G-DmcEg9fT_uEUF7kvwcdUJeiCrQ/exec";
+        
+        // PASSCODE UNTUK MASUK KE GAME (TIDAK DITAMPILKAN DI TAMPILAN AWAL)
+        const SYSTEM_PASSCODE = "ENGLISH9";
+    </script>
+
+    <!-- CONTAINER UTAMA GAME -->
+    <div class="w-full max-w-4xl mx-auto">
+
+        <!-- 1. SCREEN: LOGIN / START -->
+        <div id="screen-login" class="glass-card rounded-3xl p-6 sm:p-10 text-center relative overflow-hidden transition-all duration-300">
+            <div class="absolute -top-12 -right-12 w-32 h-32 bg-yellow-300 rounded-full blur-xl opacity-70"></div>
+            <div class="absolute -bottom-12 -left-12 w-32 h-32 bg-pink-400 rounded-full blur-xl opacity-70"></div>
+            
+            <div class="relative z-10">
+                <div class="inline-block bg-brand-purple text-white px-4 py-1 rounded-full text-xs sm:text-sm font-semibold tracking-wide uppercase mb-3 shadow-md">
+                    <i class="fa-solid fa-plane-departure mr-2"></i> Bahasa Inggris Kelas 9 / Fase D
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold font-display text-brand-purple mb-2 tracking-wide">
+                    ENGLISH QUEST
+                </h1>
+                <p class="text-lg sm:text-xl font-bold text-slate-600 mb-6">Unforgettable Journeys: Past Continuous Tense</p>
+
+                <!-- Box Petunjuk -->
+                <div class="bg-blue-50 border-2 border-blue-200 rounded-2xl p-4 mb-6 text-left text-sm text-slate-700">
+                    <h3 class="font-bold text-blue-800 text-base mb-1"><i class="fa-solid fa-circle-info mr-2"></i>Petunjuk Pengerjaan Asesmen:</h3>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Jumlah Soal: <b>30 Soal Pilihan Ganda</b> (Mudah, Sedang, HOTS).</li>
+                        <li>Waktu Pengerjaan: <b>60 Menit</b>.</li>
+                        <li>Sistem Keamanan: Dilarang berpindah tab! (<b>Maksimal 3x Pelanggaran</b>).</li>
+                        <li>Masukkan <b>Passcode Ujian</b> dari guru Anda.</li>
+                    </ul>
+                </div>
+
+                <!-- Form Identitas -->
+                <form id="form-login" onsubmit="handleStartGame(event)" class="space-y-4 max-w-md mx-auto text-left">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1"><i class="fa-solid fa-user mr-2 text-brand-purple"></i>Nama Lengkap Peserta Didik</label>
+                        <input type="text" id="input-nama" required placeholder="Contoh: Budi Santoso" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-brand-purple focus:outline-none transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1"><i class="fa-solid fa-school mr-2 text-brand-purple"></i>Kelas</label>
+                        <select id="input-kelas" required class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-brand-purple focus:outline-none transition bg-white">
+                            <option value="">-- Pilih Kelas --</option>
+                            <option value="9-A">Kelas 9 - A</option>
+                            <option value="9-B">Kelas 9 - B</option>
+                            <option value="9-C">Kelas 9 - C</option>
+                            <option value="9-D">Kelas 9 - D</option>
+                            <option value="9-E">Kelas 9 - E</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1"><i class="fa-solid fa-key mr-2 text-brand-purple"></i>Passcode Ujian</label>
+                        <input type="password" id="input-passcode" required placeholder="Masukkan Passcode" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-brand-purple focus:outline-none transition">
+                    </div>
+
+                    <div id="login-error" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded-xl text-sm font-semibold">
+                        <!-- Pesan Error -->
+                    </div>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-brand-purple to-indigo-600 hover:from-indigo-600 hover:to-brand-purple text-white font-bold py-4 rounded-xl shadow-lg transition transform active:scale-95 text-lg font-display tracking-wider">
+                        <i class="fa-solid fa-gamepad mr-2"></i> MULAI PETUALANGAN
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- 2. SCREEN: QUIZ / GAMEPLAY -->
+        <div id="screen-quiz" class="hidden glass-card rounded-3xl p-4 sm:p-8 relative">
+            <!-- Header Bar (Timer & Status) -->
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b-2 border-slate-100 pb-4 mb-6">
+                <div>
+                    <h2 class="font-display text-xl sm:text-2xl font-bold text-brand-purple" id="display-user-info">Student Name</h2>
+                    <p class="text-xs sm:text-sm text-slate-500 font-semibold" id="display-class-info">Class 9</p>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <!-- Warning Counter -->
+                    <div class="bg-amber-100 text-amber-800 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5">
+                        <i class="fa-solid fa-triangle-exclamation text-amber-600"></i>
+                        <span>Violations: <span id="violation-count" class="text-red-600">0</span>/3</span>
+                    </div>
+
+                    <!-- Countdown Timer -->
+                    <div class="bg-red-500 text-white px-4 py-1.5 rounded-xl text-sm sm:text-base font-bold flex items-center gap-2 shadow-md">
+                        <i class="fa-solid fa-clock animate-pulse"></i>
+                        <span id="timer-display">60:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question Number Badges Grid -->
+            <div class="mb-6">
+                <div class="text-xs font-bold text-slate-500 mb-2 uppercase tracking-wider">Navigasi Soal:</div>
+                <div id="badges-container" class="flex flex-wrap gap-1.5 max-h-24 overflow-y-auto p-2 bg-slate-50 rounded-xl border border-slate-200">
+                    <!-- Dynamic badges generated by JS -->
+                </div>
+            </div>
+
+            <!-- Question Card Area -->
+            <div class="bg-white rounded-2xl p-5 sm:p-7 border-2 border-slate-100 shadow-sm mb-6">
+                <!-- Question Header Tag -->
+                <div class="flex justify-between items-center mb-3">
+                    <span id="question-number-tag" class="bg-brand-purple/10 text-brand-purple font-extrabold text-sm px-3 py-1 rounded-lg">
+                        Question 1 of 30
+                    </span>
+                    <span id="question-level-tag" class="text-xs font-bold px-3 py-1 rounded-lg uppercase">
+                        Easy
+                    </span>
+                </div>
+
+                <!-- Text Context / Reading Passage / Dialogue -->
+                <div id="passage-box" class="bg-slate-50 p-4 rounded-xl border-l-4 border-brand-purple mb-4 text-sm sm:text-base text-slate-700 italic">
+                    <!-- Dynamic Passage Text -->
+                </div>
+
+                <!-- Main Question Optional Image -->
+                <div id="question-image-box" class="hidden mb-4 text-center">
+                    <!-- Place for Question Image URL -->
+                    <img id="question-image" src="" alt="Question Image" class="max-h-60 rounded-xl mx-auto border-2 border-slate-200">
+                </div>
+
+                <!-- Main Question Text -->
+                <h3 id="question-text" class="text-base sm:text-lg font-bold text-slate-800 mb-6">
+                    <!-- Dynamic Question Text -->
+                </h3>
+
+                <!-- Answer Options -->
+                <div id="options-container" class="space-y-3">
+                    <!-- Dynamic Option Items -->
+                </div>
+            </div>
+
+            <!-- Footer Navigation Buttons -->
+            <div class="flex items-center justify-between gap-4">
+                <button id="btn-prev" onclick="navigateQuestion(-1)" class="px-5 py-3 rounded-xl bg-slate-200 hover:bg-slate-300 font-bold text-slate-700 transition flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
+                    <i class="fa-solid fa-arrow-left"></i> Sebelumnya
+                </button>
+
+                <button id="btn-next" onclick="navigateQuestion(1)" class="px-5 py-3 rounded-xl bg-brand-purple hover:bg-indigo-700 text-white font-bold transition flex items-center gap-2">
+                    Selanjutnya <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <button id="btn-submit" onclick="confirmSubmitQuiz()" class="hidden px-6 py-3 rounded-xl bg-brand-green hover:bg-emerald-600 text-white font-bold transition flex items-center gap-2 shadow-lg">
+                    <i class="fa-solid fa-paper-plane"></i> Selesai & Kirim
+                </button>
+            </div>
+        </div>
+
+        <!-- 3. SCREEN: RESULT / SCORE -->
+        <div id="screen-result" class="hidden glass-card rounded-3xl p-6 sm:p-10 text-center relative overflow-hidden">
+            <div class="max-w-xl mx-auto">
+                <div class="w-20 h-20 bg-emerald-100 text-brand-green rounded-full flex items-center justify-center mx-auto mb-4 text-4xl shadow-inner">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <h2 class="text-3xl font-display font-bold text-slate-800 mb-1">Asesmen Selesai!</h2>
+                <p class="text-slate-500 font-medium mb-6">Terima kasih telah menyelesaikan tes latihan ini.</p>
+
+                <!-- Score Board -->
+                <div class="bg-gradient-to-br from-brand-purple to-indigo-700 text-white p-6 rounded-2xl shadow-xl mb-6">
+                    <p class="text-sm font-semibold uppercase tracking-wider text-indigo-200">Skor Akhir Anda</p>
+                    <div class="text-6xl font-display font-extrabold my-2" id="result-score">0</div>
+                    <div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-indigo-400/30 text-xs sm:text-sm">
+                        <div>
+                            <p class="text-indigo-200">Benar</p>
+                            <p class="font-bold text-lg text-green-300" id="result-correct">0</p>
+                        </div>
+                        <div>
+                            <p class="text-indigo-200">Salah</p>
+                            <p class="font-bold text-lg text-red-300" id="result-wrong">0</p>
+                        </div>
+                        <div>
+                            <p class="text-indigo-200">Pelanggaran</p>
+                            <p class="font-bold text-lg text-yellow-300" id="result-violations">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Information Details -->
+                <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200 text-left text-xs sm:text-sm space-y-2 mb-6">
+                    <p><b>Nama:</b> <span id="result-name">-</span></p>
+                    <p><b>Kelas:</b> <span id="result-class">-</span></p>
+                    <p><b>Nomor Soal Salah:</b> <span id="result-wrong-list" class="text-red-600 font-bold">-</span></p>
+                    <p id="gas-status" class="text-xs text-slate-400 italic mt-2"><i class="fa-solid fa-spinner animate-spin mr-1"></i> Menyimpan hasil ke database server...</p>
+                </div>
+
+                <button onclick="resetToLogin()" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3.5 rounded-xl transition font-display">
+                    <i class="fa-solid fa-rotate-right mr-2"></i> Kembali ke Layar Utama
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODAL CONFIRMATION -->
+    <div id="modal-confirm" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl p-6 max-w-sm w-full text-center shadow-2xl">
+            <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
+                <i class="fa-solid fa-circle-question"></i>
+            </div>
+            <h3 class="font-bold text-lg text-slate-800 mb-2">Kirim Jawaban Sekarang?</h3>
+            <p class="text-sm text-slate-600 mb-6">Pastikan seluruh soal telah Anda periksa kembali. Kamu masih memiliki sisa waktu!</p>
+            <div class="flex gap-3">
+                <button onclick="closeModal()" class="flex-1 py-2.5 rounded-xl border-2 border-slate-200 font-bold text-slate-600 hover:bg-slate-100">Batal</button>
+                <button onclick="submitQuiz()" class="flex-1 py-2.5 rounded-xl bg-brand-green hover:bg-emerald-600 text-white font-bold">Ya, Kirim</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // DATA 30 SOAL LATIHAN BAHASA INGGRIS KELAS 9 (FASE D)
+        // TOPIC: UNFORGETTABLE JOURNEYS (PAST CONTINUOUS TENSE)
+        const quizQuestions = [
+            // SOAL 1-10 (EASY / MUDAH - LOTS)
+            {
+                id: 1,
+                level: "Mudah",
+                passage: "Dialogue 1:\nSiti: What were you doing when the heavy rain started during your trip to Bromo?\nEko: I ___ (take) photos of the sunrise at the viewpoint.",
+                question: "Choose the correct past continuous form to complete Eko's answer:",
+                options: [
+                    { key: "A", text: "was taking", image: "" },
+                    { key: "B", text: "were taking", image: "" },
+                    { key: "C", text: "am taking", image: "" },
+                    { key: "D", text: "took", image: "" }
+                ],
+                answer: "A",
+                image: "" // Tempat untuk menyisipkan Image URL Soal
+            },
+            {
+                id: 2,
+                level: "Mudah",
+                passage: "Text 1:\nLast holiday, Riana and her family were traveling to Bali by bus. While they ___ across the ferry, they saw dolphins swimming in the sea.",
+                question: "Complete the sentence with the correct verb form:",
+                options: [
+                    { key: "A", text: "was crossing", image: "" },
+                    { key: "B", text: "were crossing", image: "" },
+                    { key: "C", text: "are crossing", image: "" },
+                    { key: "D", text: "crossed", image: "" }
+                ],
+                answer: "B",
+                image: ""
+            },
+            {
+                id: 3,
+                level: "Mudah",
+                passage: "Dialogue 2:\nTeacher: Why didn't you hear the flight announcement at the airport?\nAndi: Sorry, Ma'am. I ___ to my music with headphones.",
+                question: "Fill in the blank:",
+                options: [
+                    { key: "A", text: "were listening", image: "" },
+                    { key: "B", text: "was listening", image: "" },
+                    { key: "C", text: "listened", image: "" },
+                    { key: "D", text: "is listening", image: "" }
+                ],
+                answer: "B",
+                image: ""
+            },
+            {
+                id: 4,
+                level: "Mudah",
+                passage: "Text 2:\nAt 3 PM yesterday, the students of SMP Merdeka were riding their bicycles along the Yogyakarta countryside during their school camp.",
+                question: "What is the formula of the Past Continuous Tense used in the text?",
+                options: [
+                    { key: "A", text: "Subject + verb-1 + -ing", image: "" },
+                    { key: "B", text: "Subject + was/were + verb-ing", image: "" },
+                    { key: "C", text: "Subject + have/has + verb-3", image: "" },
+                    { key: "D", text: "Subject + did + verb-base", image: "" }
+                ],
+                answer: "B",
+                image: ""
+            },
+            {
+                id: 5,
+                level: "Mudah",
+                passage: "Dialogue 3:\nDina: ___ you sleeping when the train arrived at the station?\nFajar: No, I was reading a comic book.",
+                question: "Which auxiliary verb completes the question?",
+                options: [
+                    { key: "A", text: "Was", image: "" },
+                    { key: "B", text: "Were", image: "" },
+                    { key: "C", text: "Did", image: "" },
+                    { key: "D", text: "Are", image: "" }
+                ],
+                answer: "B",
+                image: ""
+            },
+            {
+                id: 6,
+                level: "Mudah",
+                passage: "Text 3:\nWhen the car suddenly got a flat tire on the way to Parangtritis beach, my dad ___ the map.",
+                question: "Choose the correct phrase:",
+                options: [
+                    { key: "A", text: "was checking", image: "" },
+                    { key: "B", text: "were checking", image: "" },
+                    { key: "C", text: "checks", image: "" },
+                    { key: "D", text: "is checking", image: "" }
+                ],
+                answer: "A",
+                image: ""
+            },
+            {
+                id: 7,
+                level: "Mudah",
+                passage: "Dialogue 4:\nLina: What were your brothers doing at 7 PM last Sunday during the camping trip?\nBeni: They ___ roasted corn near the campfire.",
+                question: "Select the right option:",
+                options: [
+                    { key: "A", text: "was eating", image: "" },
+                    { key: "B", text: "were eating", image: "" },
+                    { key: "C", text: "ate", image: "" },
+                    { key: "D", text: "are eating", image: "" }
+                ],
+                answer: "B",
+                image: ""
+            },
+            {
+                id: 8,
+                level: "Mudah",
+                passage: "Sentence:\nWhile the tour guide was explaining the history of Borobudur, some students ___ notes diligently.",
+                question: "Complete the sentence with past continuous structure:",
+                options: [
+                    { key: "A", text: "was taking", image: "" },
+                    { key: "B", text: "were taking", image: "" },
+                    { key: "C", text: "are taking", image: "" },
+                    { key: "D", text: "took", image: "" }
+                ],
+                answer: "B",
+                image: ""
+            },
+            {
+                id: 9,
+                level: "Mudah",
+                passage: "Dialogue 5:\nGalang: I tried to call you yesterday at 10 AM, but you didn't answer.\nMonita: Oh, I'm sorry. I ___ on the lake with my family.",
+                question: "Fill in the blank correctly:",
+                options: [
+                    { key: "A", text: "was canoeing", image: "" },
+                    { key: "B", text: "were canoeing", image: "" },
+                    { key: "C", text: "am canoeing", image: "" },
+                    { key: "D", text: "canoed", image: "" }
+                ],
+                answer: "A",
+                image: ""
+            },
+            {
+                id: 10,
+                level: "Mudah",
+                passage: "Text 4:\nThe negative form of 'They were waiting for the shuttle bus when it rained' is...",
+                question: "Choose the correct negative sentence:",
+                options: [
+                    { key: "A", text: "They were not waiting for the shuttle bus when it rained.", image: "" },
+                    { key: "B", text: "They did not waiting for the shuttle bus when it rained.", image: "" },
+                    { key: "C", text: "They was not waiting for the shuttle bus when it rained.", image: "" },
+                    { key: "D", text: "They are not waiting for the shuttle bus when it rained.", image: "" }
+                ],
+                answer: "A",
+                image: ""
+            },
+
+            // SOAL 11-20 (MEDIUM / SEDANG - MOTS)
+            {
+                id: 11,
+                level: "Sedang",
+                passage: "Text 5:\nLast summer, Maya went hiking in Mount Papandayan. While she was walking up the trail, she dropped her camera. Luckily, her friend caught it before it hit the rocks.",
+                question: "Which event was an ongoing action in the past interrupted by another event?",
+                options: [
+                    { key: "A", text: "She dropped her camera.", image: "" },
+                    { key: "B", text: "She was walking up the trail.", image: "" },
+                    { key: "C", text: "Her friend caught it.", image: "" },
+                    { key: "D", text: "It hit the rocks.", image: "" }
+                ],
+                answer: "B",
+                image: ""
+            },
+            {
+                id: 12,
+                level: "Sedang",
+                passage: "Dialogue 6:\nRiko: What happened when you were snorkeling in Bunaken?\nTina: A beautiful sea turtle ___ right next to me while I was taking photos underwater!",
+                question: "Choose the correct simple past verb to complete the interruption:",
+                options: [
+                    { key: "A", text: "was swimming", image: "" },
+                    { key: "B", text: "swam", image: "" },
+                    { key: "C", text: "were swimming", image: "" },
+                    { key: "D", text: "swims", image: "" }
+                ],
+                answer: "B",
+                image: ""
+            },
+            {
+                id: 13,
+                level: "Sedang",
+                passage: "Text 6:\n'While Mr. Hendra was driving through the foggy mountain road, his children were singing songs happily in the back seat.'",
+                question: "What does the sentence tell us about the two actions?",
+                options: [
+                    { key: "A", text: "One action interrupted the other action.", image: "" },
+                    { key: "B", text: "Both actions were happening at the same time in the past.", image: "" },
+                    { key: "C", text: "One action happened long after the other.", image: "" },
+                    { key: "D", text: "Neither action was completed.", image: "" }
+                ],
+                answer: "B",
+                image: ""
+            },
+            {
+                id: 14,
+                level: "Sedang",
+                passage: "Dialogue 7:\nBayu: Were you watching the sunset when the train passed the long bridge?\nTania: Yes, ___. It was an amazing view!",
+                question: "What is the correct short answer for Tania?",
+                options: [
+                    { key: "A", text: "I was", image: "" },
+                    { key: "B", text: "I were", image: "" },
+                    { key: "C", text: "I did", image: "" },
+                    { key: "D", text: "I am", image: "" }
+                ],
+                answer: "A",
+                image: ""
+            },
+            {
+                id: 15,
+                level: "Sedang",
+                passage: "Text 7:\nArrange the following words into a meaningful sentence:\n(1) playing / (2) while / (3) was / (4) the driver / (5) I / (6) driving / (7) games / (8) was",
+                question: "The correct arrangement is:",
+                options: [
+                    { key: "A", text: "5 - 3 - 1 - 7 - 2 - 4 - 8 - 6 (I was playing games while the driver was driving)", image: "" },
+                    { key: "B", text: "4 - 3 - 6 - 2 - 5 - 1 - 7 - 8 (The driver was driving while I playing games was)", image: "" },
+                    { key: "C", text: "5 - 8 - 1 - 7 - 2 - 4 - 3 - 6 (I was playing games while the driver was driving)", image: "" },
+                    { key: "D", text: "2 - 5 - 3 - 6 - 4 - 8 - 1 - 7 (While I was driving the driver was playing games)", image: "" }
+                ],
+                answer: "A",
+                image: ""
+            },
+            {
+                id: 16,
+                level: "Sedang",
+                passage: "Dialogue 8:\nKiki: Why was the bus driver blowing the horn repeatedly?\nAris: Because a big cow ___ across the road when the bus was moving fast.",
+                question: "Complete Aris' statement with appropriate tense:",
+                options: [
+                    { key: "A", text: "was walking", image: "" },
+                    { key: "B", text: "walked", image: "" },
+                    { key: "C", text: "were walking", image: "" },
+                    { key: "D", text: "walks", image: "" }
+                ],
+                answer: "B",
+                image: ""
+            },
+            {
+                id: 17,
+                level: "Sedang",
+                passage: "Text 8:\n'When the earthquake struck the coastal village at 6 AM, many tourists were still sleeping in their wooden cottages.'",
+                question: "From the text above, we know that:",
+                options: [
+                    { key: "A", text: "Tourists woke up before the earthquake.", image: "" },
+                    { key: "B", text: "The earthquake happened while tourists were sleeping.", image: "" },
+                    { key: "C", text: "Tourists slept after the earthquake struck.", image: "" },
+                    { key: "D", text: "No tourists were in the cottages.", image: "" }
+                ],
+                answer: "B",
+                image: ""
+            },
+            {
+                id: 18,
+                level: "Sedang",
+                passage: "Dialogue 9:\nSurya: What were you and your brother doing when the sudden storm hit your tent?\nNico: We ___ our lunch box inside.",
+                question: "Choose the correct phrase:",
+                options: [
+                    { key: "A", text: "was opening", image: "" },
+                    { key: "B", text: "were opening", image: "" },
+                    { key: "C", text: "opened", image: "" },
+                    { key: "D", text: "are opening", image: "" }
+                ],
+                answer: "B",
+                image: ""
+            },
+            {
+                id: 19,
+                level: "Sedang",
+                passage: "Text 9:\nIdentify the error in this sentence:\n'While my sister were buying souvenirs at the market, I lost my wallet.'",
+                question: "Which part of the sentence contains a grammatical error?",
+                options: [
+                    { key: "A", text: "were buying", image: "" },
+                    { key: "B", text: "at the market", image: "" },
+                    { key: "C", text: "lost my wallet", image: "" },
+                    { key: "D", text: "While my sister", image: "" }
+                ],
+                answer: "A",
+                image: ""
+            },
+            {
+                id: 20,
+                level: "Sedang",
+                passage: "Dialogue 10:\nTari: Did you enjoy your road trip to Lake Toba?\nSinta: Yes! Even when it was raining heavily, we ___ stories and laughing together in the car.",
+                question: "Fill in the blank with the correct continuous form:",
+                options: [
+                    { key: "A", text: "were telling", image: "" },
+                    { key: "B", text: "was telling", image: "" },
+                    { key: "C", text: "told", image: "" },
+                    { key: "D", text: "are telling", image: "" }
+                ],
+                answer: "A",
+                image: ""
+            },
+
+            // SOAL 21-30 (HARD / SULIT - HOTS)
+            {
+                id: 21,
+                level: "HOTS",
+                passage: "Read the story segment:\n'It was 8 PM during our night safari trip in Taman Safari. Rain was falling softly. While our guide was searching for wild animals with his flashlight, a young deer suddenly jumped in front of our safari car. The driver stopped immediately.'",
+                question: "Which chronological order of events is correct based on the story?",
+                options: [
+                    { key: "A", text: "Soft rain fell -> Guide searched with flashlight -> Deer jumped -> Driver stopped", image: "" },
+                    { key: "B", text: "Driver stopped -> Deer jumped -> Soft rain was falling -> Guide searched", image: "" },
+                    { key: "C", text: "Deer jumped -> Guide was searching -> Soft rain fell -> Driver stopped", image: "" },
+                    { key: "D", text: "Guide stopped driver -> Rain fell -> Deer was jumping", image: "" }
+                ],
+                answer: "A",
+                image: ""
+            },
+            {
+                id: 22,
+                level: "HOTS",
+                passage: "Text Story:\n'During our trip to Raja Ampat, Hassan was filming the scenery from the speedboat while his friends were taking selfies. Suddenly, Hassan's phone slipped from his hand and fell into the ocean. Everyone gasped in surprise.'",
+                question: "Why did Hassan drop his phone?",
+                options: [
+                    { key: "A", text: "Because his friends pushed him while taking selfies.", image: "" },
+                    { key: "B", text: "It slipped while he was filming the scenery on the moving boat.", image: "" },
+                    { key: "C", text: "Because the speedboat crashed into a rock.", image: "" },
+                    { key: "D", text: "He intentionally threw it to test his camera waterproof feature.", image: "" }
+                ],
+                answer: "B",
+                image: ""
+            },
+            {
+                id: 23,
+                level: "HOTS",
+                passage: "Context:\nImagine you are writing a diary entry about a memorable trip interruption:\n'We (1. pitch) our tent on the hill when a strong wind suddenly (2. blow) our roof away.'",
+                question: "Which combined verb forms correctly reflect the past continuous and simple past rules?",
+                options: [
+                    { key: "A", text: "(1) pitched ; (2) was blowing", image: "" },
+                    { key: "B", text: "(1) were pitching ; (2) blew", image: "" },
+                    { key: "C", text: "(1) was pitching ; (2) blown", image: "" },
+                    { key: "D", text: "(1) are pitching ; (2) blows", image: "" }
+                ],
+                answer: "B",
+                image: ""
+            },
+            {
+                id: 24,
+                level: "HOTS",
+                passage: "Read the comparison:\nSentence A: 'When I called Andre, he was preparing his backpack for the hike.'\nSentence B: 'When I called Andre, he prepared his backpack for the hike.'",
+                question: "What is the key difference in meaning between Sentence A and Sentence B?",
+                options: [
+                    { key: "A", text: "Sentence A means Andre was already in the middle of packing before the call; Sentence B implies he started packing right after the call.", image: "" },
+                    { key: "B", text: "Sentence A happened in the past, while Sentence B happens in the present.", image: "" },
+                    { key: "C", text: "Sentence A shows a habitual action; Sentence B shows a single future plan.", image: "" },
+                    { key: "D", text: "There is no difference in meaning at all.", image: "" }
+                ],
+                answer: "A",
+                image: ""
+            },
+            {
+                id: 25,
+                level: "HOTS",
+                passage: "Paragraph:\n'Last weekend, Sarah went on a river tubing trip. While the water (1. flow) rapidly, her helmet (2. come) loose. She quickly (3. fasten) it back while her instructor (4. watch) her closely.'",
+                question: "Choose the correct sequence of verb tenses for (1), (2), (3), and (4):",
+                options: [
+                    { key: "A", text: "(1) was flowing, (2) came, (3) fastened, (4) was watching", image: "" },
+                    { key: "B", text: "(1) flowed, (2) was coming, (3) was fastening, (4) watched", image: "" },
+                    { key: "C", text: "(1) was flowing, (2) was coming, (3) fastened, (4) watched", image: "" },
+                    { key: "D", text: "(1) is flowing, (2) come, (3) fastens, (4) is watching", image: "" }
+                ],
+                answer: "A",
+                image: ""
+            },
+            {
+                id: 26,
+                level: "HOTS",
+                passage: "Dialogue 11:\nTeacher: What went wrong during your study tour in Museum Nasional?\nStudent: While we ___ (listen) to the guide, two students from our group wandered off and got lost in the exhibition hall.",
+                question: "Which form best completes the student's explanation and maintains correct grammar?",
+                options: [
+                    { key: "A", text: "were listening", image: "" },
+                    { key: "B", text: "was listening", image: "" },
+                    { key: "C", text: "listened", image: "" },
+                    { key: "D", text: "are listening", image: "" }
+                ],
+                answer: "A",
+                image: ""
+            },
+            {
+                id: 27,
+                level: "HOTS",
+                passage: "Text Story:\n'At 10 AM, the tour bus was navigating a narrow winding path in Dieng. Passengers were admiring the misty hills. Suddenly, the engine died and smoke came out of the hood. Fortunately, everyone evacuated safely.'",
+                question: "What were the passengers doing EXACTLY BEFORE the engine died?",
+                options: [
+                    { key: "A", text: "They were evacuating safely from the bus.", image: "" },
+                    { key: "B", text: "They were admiring the misty hills view.", image: "" },
+                    { key: "C", text: "They were fixing the smoked engine.", image: "" },
+                    { key: "D", text: "They were walking on the narrow road.", image: "" }
+                ],
+                answer: "B",
+                image: ""
+            },
+            {
+                id: 28,
+                level: "HOTS",
+                passage: "Sentence Analysis:\n'While my parents were discussing our vacation itinerary, my brother was searching for hotel discounts online.'",
+                question: "Which connector can replace 'While' without changing the meaning of simultaneous past actions?",
+                options: [
+                    { key: "A", text: "As", image: "" },
+                    { key: "B", text: "Because", image: "" },
+                    { key: "C", text: "Although", image: "" },
+                    { key: "D", text: "Before", image: "" }
+                ],
+                answer: "A",
+                image: ""
+            },
+            {
+                id: 29,
+                level: "HOTS",
+                passage: "Context:\nWhich of the following sentences correctly combines a background past continuous action with an interrupting simple past action in an unforgettable travel story?",
+                question: "Select the most accurate sentence:",
+                options: [
+                    { key: "A", text: "While we were trekking through the rainforest, we discovered an ancient hidden waterfall.", image: "" },
+                    { key: "B", text: "While we trekked through the rainforest, we were discovering an ancient hidden waterfall.", image: "" },
+                    { key: "C", text: "We were trekking through the rainforest while we were discovering an ancient hidden waterfall.", image: "" },
+                    { key: "D", text: "We trekked through the rainforest when we discover an ancient hidden waterfall.", image: "" }
+                ],
+                answer: "A",
+                image: ""
+            },
+            {
+                id: 30,
+                level: "HOTS",
+                passage: "Text Story:\n'My family and I were waiting at the train platform when an announcement stated our train was delayed by two hours. To pass time, my father was reading a newspaper, my mother was sipping warm tea, and I was sketching the busy station in my notebook.'",
+                question: "Based on the text, how many background actions were happening simultaneously while waiting for the delayed train?",
+                options: [
+                    { key: "A", text: "One action", image: "" },
+                    { key: "B", text: "Two actions", image: "" },
+                    { key: "C", text: "Three actions", image: "" },
+                    { key: "D", text: "Four actions", image: "" }
+                ],
+                answer: "C",
+                image: ""
+            }
+        ];
+
+        // GLOBAL STATE VARIABLES
+        let currentQuestionIndex = 0;
+        let userAnswers = {}; // Format: { 1: "A", 2: "C", ... }
+        let studentData = { nama: "", kelas: "" };
+        let timerInterval = null;
+        let timeRemaining = 60 * 60; // 60 menit dalam detik
+        let violationCount = 0;
+        let quizSubmitted = false;
+
+        // EVENT LISTENERS & SECURITY DETECTORS
+        window.addEventListener('DOMContentLoaded', () => {
+            renderBadges();
+            setupAntiCheat();
+        });
+
+        function setupAntiCheat() {
+            // Deteksi ketika siswa berpindah tab / minimize window
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden && !quizSubmitted && document.getElementById('screen-quiz').classList.contains('hidden') === false) {
+                    violationCount++;
+                    document.getElementById('violation-count').innerText = violationCount;
+
+                    if (violationCount >= 3) {
+                        alert("PERINGATAN KECURANGAN!\nAnda telah berpindah halaman/tab sebanyak 3 kali. Tes dihentikan dan Anda dikembalikan ke layar awal.");
+                        forceResetDueToViolation();
+                    } else {
+                        alert(`DILARANG BERPINDAH TAB/APLIKASI!\nIni adalah pelanggaran ke-${violationCount} dari maksimal 3 kali.`);
+                    }
+                }
+            });
+        }
+
+        function forceResetDueToViolation() {
+            clearInterval(timerInterval);
+            resetToLogin();
+        }
+
+        function handleStartGame(e) {
+            e.preventDefault();
+            const nama = document.getElementById('input-nama').value.trim();
+            const kelas = document.getElementById('input-kelas').value;
+            const passcode = document.getElementById('input-passcode').value.trim();
+            const errorBox = document.getElementById('login-error');
+
+            if (passcode !== SYSTEM_PASSCODE) {
+                errorBox.innerText = "Passcode Ujian Salah! Silakan tanyakan ke guru Anda.";
+                errorBox.classList.remove('hidden');
+                return;
+            }
+
+            errorBox.classList.add('hidden');
+            studentData.nama = nama;
+            studentData.kelas = kelas;
+
+            // Update Tampilan User
+            document.getElementById('display-user-info').innerText = nama;
+            document.getElementById('display-class-info').innerText = `Kelas: ${kelas}`;
+
+            // Pindah Layar
+            document.getElementById('screen-login').classList.add('hidden');
+            document.getElementById('screen-quiz').classList.remove('hidden');
+
+            // Reset Game & Start Timer
+            violationCount = 0;
+            document.getElementById('violation-count').innerText = "0";
+            currentQuestionIndex = 0;
+            userAnswers = {};
+            quizSubmitted = false;
+            
+            startTimer();
+            loadQuestion(currentQuestionIndex);
+        }
+
+        function startTimer() {
+            timeRemaining = 60 * 60; // 60 Menit
+            updateTimerDisplay();
+
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                updateTimerDisplay();
+
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    alert("Waktu Pengerjaan Telah Habis! Jawaban Anda akan otomatis dikirim.");
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            const formattedMin = minutes < 10 ? `0${minutes}` : minutes;
+            const formattedSec = seconds < 10 ? `0${seconds}` : seconds;
+            document.getElementById('timer-display').innerText = `${formattedMin}:${formattedSec}`;
+        }
+
+        function renderBadges() {
+            const container = document.getElementById('badges-container');
+            container.innerHTML = '';
+
+            quizQuestions.forEach((q, index) => {
+                const badge = document.createElement('button');
+                badge.type = 'button';
+                badge.id = `badge-${index}`;
+                badge.className = `w-8 h-8 rounded-lg border font-bold text-xs flex items-center justify-center question-badge bg-white border-slate-300 text-slate-700 hover:bg-purple-50`;
+                badge.innerText = index + 1;
+                badge.onclick = () => jumpToQuestion(index);
+                container.appendChild(badge);
+            });
+        }
+
+        function updateBadgesState() {
+            quizQuestions.forEach((q, index) => {
+                const badge = document.getElementById(`badge-${index}`);
+                if (!badge) return;
+
+                // Reset Class
+                badge.className = `w-8 h-8 rounded-lg border font-bold text-xs flex items-center justify-center question-badge transition`;
+
+                if (index === currentQuestionIndex) {
+                    badge.classList.add('active');
+                } else if (userAnswers[q.id]) {
+                    badge.classList.add('answered');
+                } else {
+                    badge.classList.add('bg-white', 'border-slate-300', 'text-slate-700', 'hover:bg-purple-50');
+                }
+            });
+        }
+
+        function loadQuestion(index) {
+            const q = quizQuestions[index];
+
+            // Update Tag Number & Level
+            document.getElementById('question-number-tag').innerText = `Question ${index + 1} of ${quizQuestions.length}`;
+            
+            const levelTag = document.getElementById('question-level-tag');
+            levelTag.innerText = q.level;
+            if (q.level === "Mudah") {
+                levelTag.className = "text-xs font-bold px-3 py-1 rounded-lg uppercase bg-green-100 text-green-700";
+            } else if (q.level === "Sedang") {
+                levelTag.className = "text-xs font-bold px-3 py-1 rounded-lg uppercase bg-amber-100 text-amber-700";
+            } else {
+                levelTag.className = "text-xs font-bold px-3 py-1 rounded-lg uppercase bg-red-100 text-red-700";
+            }
+
+            // Passage Text Context
+            document.getElementById('passage-box').innerText = q.passage;
+
+            // Optional Question Image Slot
+            const imgBox = document.getElementById('question-image-box');
+            const imgElem = document.getElementById('question-image');
+            if (q.image && q.image.trim() !== "") {
+                imgElem.src = q.image;
+                imgBox.classList.remove('hidden');
+            } else {
+                imgBox.classList.add('hidden');
+            }
+
+            // Question Text
+            document.getElementById('question-text').innerText = q.question;
+
+            // Options List
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            q.options.forEach(opt => {
+                const isChecked = userAnswers[q.id] === opt.key ? 'checked' : '';
+                
+                // Optional Option Image Template
+                const optImgHtml = (opt.image && opt.image.trim() !== "") 
+                    ? `<img src="${opt.image}" class="mt-2 max-h-32 rounded-lg border">` 
+                    : ``;
+
+                const optHtml = `
+                    <div>
+                        <input type="radio" id="opt-${q.id}-${opt.key}" name="question-${q.id}" value="${opt.key}" ${isChecked} onchange="selectAnswer(${q.id}, '${opt.key}')" class="hidden custom-radio">
+                        <label for="opt-${q.id}-${opt.key}" class="flex items-start p-3.5 sm:p-4 rounded-xl border-2 border-slate-200 cursor-pointer hover:border-brand-purple/50 transition bg-white">
+                            <span class="w-7 h-7 rounded-lg bg-slate-100 border text-slate-600 font-bold flex items-center justify-center mr-3 shrink-0 text-sm">
+                                ${opt.key}
+                            </span>
+                            <div class="flex-1 text-sm sm:text-base text-slate-700 font-medium">
+                                <div>${opt.text}</div>
+                                ${optImgHtml}
+                            </div>
+                        </label>
+                    </div>
+                `;
+                optionsContainer.innerHTML += optHtml;
+            });
+
+            // Update Button Visibility
+            document.getElementById('btn-prev').disabled = (index === 0);
+
+            if (index === quizQuestions.length - 1) {
+                document.getElementById('btn-next').classList.add('hidden');
+                document.getElementById('btn-submit').classList.remove('hidden');
+            } else {
+                document.getElementById('btn-next').classList.remove('hidden');
+                document.getElementById('btn-submit').classList.add('hidden');
+            }
+
+            updateBadgesState();
+        }
+
+        function selectAnswer(qId, key) {
+            userAnswers[qId] = key;
+            updateBadgesState();
+        }
+
+        function jumpToQuestion(index) {
+            currentQuestionIndex = index;
+            loadQuestion(currentQuestionIndex);
+        }
+
+        function navigateQuestion(direction) {
+            currentQuestionIndex += direction;
+            if (currentQuestionIndex < 0) currentQuestionIndex = 0;
+            if (currentQuestionIndex >= quizQuestions.length) currentQuestionIndex = quizQuestions.length - 1;
+            loadQuestion(currentQuestionIndex);
+        }
+
+        function confirmSubmitQuiz() {
+            document.getElementById('modal-confirm').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-confirm').classList.add('hidden');
+        }
+
+        function submitQuiz() {
+            closeModal();
+            quizSubmitted = true;
+            clearInterval(timerInterval);
+
+            // Hitung Hasil
+            let correctCount = 0;
+            let wrongCount = 0;
+            let wrongQuestions = [];
+
+            quizQuestions.forEach(q => {
+                const userAns = userAnswers[q.id];
+                if (userAns === q.answer) {
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                    wrongQuestions.push(q.id);
+                }
+            });
+
+            const finalScore = Math.round((correctCount / quizQuestions.length) * 100);
+
+            // Populate Screen Result
+            document.getElementById('result-name').innerText = studentData.nama;
+            document.getElementById('result-class').innerText = studentData.kelas;
+            document.getElementById('result-score').innerText = finalScore;
+            document.getElementById('result-correct').innerText = correctCount;
+            document.getElementById('result-wrong').innerText = wrongCount;
+            document.getElementById('result-violations').innerText = violationCount;
+            document.getElementById('result-wrong-list').innerText = wrongQuestions.length > 0 ? wrongQuestions.join(", ") : "Tidak Ada (Sempurna!)";
+
+            // Switch Screen
+            document.getElementById('screen-quiz').classList.add('hidden');
+            document.getElementById('screen-result').classList.remove('hidden');
+
+            // Kirim Data ke Google Apps Script
+            sendDataToGAS(correctCount, wrongCount, finalScore, wrongQuestions);
+        }
+
+        function sendDataToGAS(correct, wrong, score, wrongList) {
+            const statusBox = document.getElementById('gas-status');
+
+            if (!GAS_URL || GAS_URL.includes("YOUR_SCRIPT_ID_HERE")) {
+                statusBox.innerHTML = "<span class='text-amber-600'><i class='fa-solid fa-triangle-exclamation mr-1'></i> Data disimpan lokal (GAS URL belum dikonfigurasi).</span>";
+                return;
+            }
+
+            const payload = {
+                timestamp: new Date().toLocaleString("id-ID"),
+                nama: studentData.nama,
+                kelas: studentData.kelas,
+                benar: correct,
+                salah: wrong,
+                skor: score,
+                pelanggaran: violationCount,
+                soalSalah: wrongList.join(", ")
+            };
+
+            fetch(GAS_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                statusBox.innerHTML = "<span class='text-green-600 font-bold'><i class='fa-solid fa-circle-check mr-1'></i> Berhasil terkirim ke Spreadsheet Guru!</span>";
+            })
+            .catch(err => {
+                console.error("Gagal mengirim data:", err);
+                statusBox.innerHTML = "<span class='text-red-600'><i class='fa-solid fa-circle-xmark mr-1'></i> Gagal terhubung ke database server.</span>";
+            });
+        }
+
+        function resetToLogin() {
+            document.getElementById('form-login').reset();
+            document.getElementById('screen-result').classList.add('hidden');
+            document.getElementById('screen-quiz').classList.add('hidden');
+            document.getElementById('screen-login').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
